@@ -28,14 +28,14 @@
 
 #define DIRMAX 200
 
-char tarfilename[1000];
+char tarfilename[1024];
 char directories[DIRMAX][1024];
 FILE *outfile = NULL;
 
 #define BACKUPSTYLE_SINGLE  0
 #define BACKUPSTYLE_RUNNING 1
 
-int SetBackupStyle(int style);
+void SetBackupStyle(int style);
 int OpenArchive(char *outfilename);
 int AddToArchive(char *filename,int isfile);
 void CloseArchive();
@@ -65,7 +65,7 @@ struct posix_header
 } ourblock;
 
 
-int SetBackupStyle(int style)
+void SetBackupStyle(int style)
 {
 	backup_style = style;
 }
@@ -161,7 +161,7 @@ int AddToArchive(char *filename,int isfile)
 	strncpy(ourblock.magic,"ustar ",6);
 	snprintf(ourblock.uid,8,"%07o",1000); // just a dummy uid
 	snprintf(ourblock.gid,8,"%07o",1000); // just a dummy gid
-	snprintf(ourblock.mtime,12,"%011lo",time(NULL));
+	snprintf(ourblock.mtime,12,"%011lo",(unsigned long)time(NULL));
 	memset(ourblock.linkname,0,100);
 	strncpy(ourblock.version," ",2);
 	memset(ourblock.uname,0,32);

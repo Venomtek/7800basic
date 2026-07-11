@@ -64,12 +64,12 @@ int main (int argc, char **argv)
 	if (memcmp ("SNIPStart", (char *)binbuffer + t, 10) == 0)
 	{
 	    t = t + 10;
-	    strncpy (snipfilename, binbuffer + t, 1023);
+	    strncpy (snipfilename, (char *)binbuffer + t, 1023);
 	    out = fopen (snipfilename, "wb");
 	    if (out == NULL)
 		prerror ("Couldn't open '%s' for writing.\n", snipfilename);
 	    fprintf (stderr, "...snipping '%s'\n", snipfilename);
-	    t = t + strlen (binbuffer + t) + 1;
+	    t = t + strlen ((char *)binbuffer + t) + 1;
 	    for (s = t; s < (binsize - 13); s++)
 		if (memcmp ("SNIPEnd", binbuffer + s, 7) == 0)
 		    break;
