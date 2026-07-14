@@ -57,11 +57,11 @@ if [ "$2" = "-O" ]
 fi
 
 if [ -r banksetrom.asm ] ; then
-    wasmtime run --dir=. --dir="$bas7800dir"  "$bas7800dir/dasm.wasm" "$bas7800dir/includes/banksetskeleton.asm" -I"$bas7800dir/includes" -f3 -l"banksetrom.list.txt" -p20 -s"banksetrom.symbol.txt" -o"banksetrom.bin" | wasmtime "$bas7800dir/7800filter.wasm"
+    wasmtime run --dir=. --dir="$bas7800dir"  "$bas7800dir/dasm.wasm" "$bas7800dir/includes/banksetskeleton.asm" -I"$bas7800dir/includes" -f3 -l"banksetrom.list.txt" -p20 -s"banksetrom.symbol.txt" -o"banksetrom.bin" | wasmtime --dir=. --dir="$bas7800dir" "$bas7800dir/7800filter.wasm"
     wasmtime run --dir=. --dir="$bas7800dir" "$bas7800dir/banksetsymbols.wasm"
 fi
 
-wasmtime run --dir=. --dir="$bas7800dir" "$bas7800dir/dasm.wasm" "$1.asm" -I"$bas7800dir/includes" -f3 -l"$1.list.txt" -p20 -s"$1.symbol.txt" -o"$1.bin" | wasmtime "$bas7800dir/7800filter.wasm"
+wasmtime run --dir=. --dir="$bas7800dir" "$bas7800dir/dasm.wasm" "$1.asm" -I"$bas7800dir/includes" -f3 -l"$1.list.txt" -p20 -s"$1.symbol.txt" -o"$1.bin" | wasmtime --dir=. --dir="$bas7800dir" "$bas7800dir/7800filter.wasm"
 
 wasmtime run --dir=. --dir="$bas7800dir" "$bas7800dir/7800sign.wasm" -w "$1.bin"
 
