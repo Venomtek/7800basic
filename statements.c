@@ -12237,7 +12237,7 @@ int isimmed (char *value)
 {
     // search queue of constants defined in any pass
     int i;
-    //removeCR(value);
+    removeCR(value);
 
     for (i = 0; i < MAXCONSTANTS; ++i)
     {
