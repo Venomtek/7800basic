@@ -25,7 +25,7 @@
  dim sound2play=a
  dim sound2playbcd=b
  dim maxsounds=c
- maxsounds=122
+ maxsounds=125
 
 main 
  clearscreen
@@ -171,6 +171,9 @@ main
  if sound2play=120 then playsfx sfx_bigwing
  if sound2play=121 then playsfx sfx_bigkill
  if sound2play=122 then playsfx sfx_pexplode
+ if sound2play=123 then playsfx sfx_pacdies
+ if sound2play=124 then playsfx sfx_bounceslide
+ if sound2play=125 then playsfx sfx_deepbeep
  gosub debouncejoyfire
  goto main 
 
@@ -4311,6 +4314,147 @@ end
  $00,$00,$00
 end
 
+ data sfx_pacdies
+ $10,$10,$00 ; version, priority, frames per chunk
+ $07,$0c,$0e
+ $07,$0c,$0c
+ $07,$0c,$0c
+ $07,$0c,$0c
+ $16,$04,$0c
+ $15,$04,$0c
+ $14,$04,$0c
+ $14,$04,$0b
+ $14,$04,$0b
+ $17,$04,$0b
+ $17,$04,$0b
+ $18,$04,$0c
+ $19,$04,$0c
+ $1a,$04,$0c
+ $1a,$04,$0c
+ $19,$04,$0c
+ $18,$04,$0c
+ $18,$04,$0c
+ $17,$04,$0b
+ $16,$04,$0b
+ $16,$04,$0b
+ $18,$04,$0b
+ $19,$04,$0b
+ $1a,$04,$0b
+ $1c,$04,$0b
+ $1d,$04,$0b
+ $1d,$04,$0b
+ $1c,$04,$0b
+ $1a,$04,$0b
+ $19,$04,$0b
+ $18,$04,$0b
+ $18,$04,$0b
+ $1a,$04,$0b
+ $1b,$04,$0b
+ $1c,$04,$0b
+ $1d,$04,$0b
+ $1e,$04,$0b
+ $1f,$04,$0b
+ $1f,$04,$0b
+ $1e,$04,$0b
+ $1d,$04,$0b
+ $1b,$04,$0b
+ $1a,$04,$0b
+ $1a,$04,$0b
+ $1d,$04,$0b
+ $1d,$04,$0b
+ $1f,$04,$0b
+ $1f,$04,$0b
+ $0b,$0c,$0b
+ $0b,$0c,$0b
+ $0b,$0c,$0b
+ $0a,$0c,$0b
+ $0a,$0c,$0b
+ $01,$06,$0b
+ $09,$0c,$0b
+ $1c,$04,$0b
+ $1f,$04,$0b
+ $1f,$04,$0b
+ $0b,$0c,$0b
+ $0b,$0c,$0b
+ $0c,$0c,$0b
+ $0d,$0c,$0b
+ $0c,$0c,$0c
+ $0c,$0c,$0c
+ $04,$06,$0c
+ $0d,$0c,$0c
+ $1b,$04,$0c
+ $14,$04,$0c
+ $10,$04,$0b
+ $0d,$04,$0a
+ $0b,$04,$0a
+ $0b,$04,$0a
+ $0b,$04,$09
+ $0b,$0e,$0c
+ $0a,$0e,$0c
+ $09,$0e,$0c
+ $09,$0e,$0c
+ $0d,$0c,$0c
+ $1b,$04,$0c
+ $14,$04,$0c
+ $10,$04,$0c
+ $0d,$04,$0b
+ $0b,$04,$0a
+ $0b,$04,$0a
+ $00,$00,$00 ; end of sfx data
+end
+
+ data sfx_bounceslide
+ $10,$10,$00 ; version, priority, frames per chunk
+ $02,$01,$08
+ $07,$06,$08
+ $07,$06,$06
+ $0b,$04,$06
+ $0b,$04,$08
+ $0c,$04,$08
+ $0d,$04,$09
+ $0e,$04,$0a
+ $0f,$04,$0c
+ $11,$04,$0d
+ $12,$04,$0e
+ $13,$04,$0e
+ $14,$04,$0e
+ $15,$04,$0e
+ $18,$04,$0e
+ $19,$04,$0e
+ $1b,$04,$0e
+ $1c,$04,$0e
+ $1b,$04,$0e
+ $17,$04,$0c
+ $16,$04,$0c
+ $14,$04,$0c
+ $12,$04,$0c
+ $10,$04,$0a
+ $0f,$04,$09
+ $0e,$04,$08
+ $0d,$04,$06
+ $0c,$04,$04
+ $0b,$04,$02
+ $00,$00,$00 ; end of sfx data
+end
+
+ data sfx_deepbeep
+ $10,$10,$00 ; version, priority, frames per chunk
+ $04,$02,$07
+ $04,$0e,$09
+ $04,$0e,$0d
+ $04,$0e,$0d
+ $09,$0c,$0d
+ $09,$0c,$0d
+ $09,$0c,$0d
+ $13,$0c,$0d
+ $13,$0c,$0d
+ $13,$0c,$0a
+ $0f,$06,$09
+ $0f,$06,$07
+ $0f,$06,$05
+ $0f,$0a,$05
+ $00,$00,$00 ; end of sfx data
+end
 
 
  alphadata sounddescriptions atascii
@@ -4437,4 +4581,7 @@ end
  'bigwing         '
  'bigkill         '
  'pexplode        '
+ 'pacdies         '
+ 'bounceslide     '
+ 'deepbeep        '
 end
