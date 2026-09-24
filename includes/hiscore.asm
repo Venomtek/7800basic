@@ -959,8 +959,22 @@ savedifficultytableAVOXskipconvert
              sta eeprombuffer+1
              lda hsdifficulty
              sta eeprombuffer+2
+
+ ifconst MULTIBUTTON
+             jsr waitforvblankstart
+             lda #$7F
+             sta CTRL ;disable DMA
+ endif
+
              lda #32
              jsr AVoxWriteBytes
+
+ ifconst MULTIBUTTON
+             jsr waitforvblankstart
+             jsr waitforvblankstart
+             lda sCTRL
+             sta CTRL ;enable DMA
+ endif
              rts
 
 savedifficultytableHSC
